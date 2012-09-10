@@ -9,7 +9,7 @@
   <meta name="author" content="Miklós Koren">
 
   
-  <meta name="description" content="Software developers are like us on many levels. They build abstract models to solve concrete problems. They write lots of code. They work in teams. &hellip;">
+  <meta name="description" content="I love Dropbox. It has saved me from a nervous breakdown several times. I am working directly in my Dropbox folder, and all my computers are &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -83,6 +83,58 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2012/09/10/dropbox-is-not-enuogh/">Dropbox Is Not Enuogh</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-10T15:58:00+02:00" pubdate data-updated="true">Sep 10<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/09/10/dropbox-is-not-enuogh/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I love Dropbox. It has saved me from a nervous breakdown several times. I am working directly in my Dropbox folder, and all my computers are automatically in sync. I have not seen a pendrive in ages. I also have <a href="https://www.dropbox.com/help/113/en">Packrat</a> enabled, which came handy several times in recovering a long-lost file. All my coauthors are on Dropbox, and it is our default tool for sharing files. So, if you still do not have a Dropbox account, by all means, sign up now.</p>
+
+<p><img class="left" src="/images/posts/packrat.png"> There are two aspects, however, where Dropbox falls short. The first is version control. Sure, Packrat keeps all past versions, but good luck finding the right version of your file among 48 revisions. The second is data storage &#8211; somewhere in the jungles of Amazon S3. With large and sensitive datasets you might want to have more control over where you store your data. Let me write about the first of these today.</p>
+
+<p>If you are working with others and want to follow <em>who</em> changed <em>what</em>, you need proper version control. The two most popular version control tools I have experience with are <a href="http://subversion.tigris.org">Subversion</a> and <a href="http://git-scm.com/">Git</a>. Both are suitable for storing and sharing past versions of your files with helpful messages attached to them. Both are open source and come with a number of user-friendly clients.</p>
+
+<p><a href="http://www.brandonsavage.net/git-versus-subversion-a-reconsideration/">Some believed</a> that Git is more difficult to learn than Subversion. <em>After</em> you have used Subversion, Git may take some getting used to, because it uses a different concept. However, if you never used either of these, go with Git. It is much easier to adopt.</p>
+
+<p>You should think of Git as a tool to create archeological layers of the past versions of your files and folders. I say archeological layers, because all your past data stays <em>in place</em>, underneath your current version. (In practice, they are stored in a subfolder named <code>.git</code>.) There is no need to set up a server to host your past data. This makes it easier to get started (no funky setup) and faster to save newer and newer versions (no network traffic). The point of version control is to control versions, and Git makes it as easy as possible.</p>
+
+<p><img class="left" src="/images/posts/git-tower.png"> As an example, look at the history of the same file (courtesy of the beautiful Git client for Mac, <a href="http://www.git-tower.com/index.html">Tower</a>). I have attached comments to each version and I can quickly compare what actually changed. It takes some discipline, as I have to explicitly drag-and-drop the files whenever I want to save a new version and I also have to attach a comment. But this is still faster than emailing your coauthor to let them know what changed in the Dropbox folder.</p>
+
+<p>Of course, with Git (as well as Subversion) you can also share your folder with others. I say it as an afterthought because Dropbox already easily takes care of the sharing part. If you keep your <code>.git</code> folder inside your Dropbox folder, then not only the current version, but all past versions are also shared across computers. This is not the official way to do it, because Git and Dropbox may get tangled up, especially if you lose network connection and Dropbox cannot refresh for a long time. For me, it has worked fine. If you want to put your files on a server instead, <a href="https://github.com/">GitHub</a> is a popular choice.</p>
+
+<p>I hope that by now you are excited to try Git. Head over to its official (and free) <a href="http://git-scm.com/book">book</a> to learn how it actually works.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2012/09/07/what-i-learned-from-software-developers/">What I Learned From Software Developers</a></h1>
     
     
@@ -142,6 +194,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/10/dropbox-is-not-enuogh/">Dropbox is not enuogh</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/09/07/what-i-learned-from-software-developers/">What I learned from software developers</a>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>What I learned from software developers - Moment of Methods</title>
+  <title>Dropbox is not enuogh - Moment of Methods</title>
   <meta name="author" content="Miklós Koren">
 
   
-  <meta name="description" content="Software developers are like us on many levels. They build abstract models to solve concrete problems. They write lots of code. They work in teams. &hellip;">
+  <meta name="description" content="I love Dropbox. It has saved me from a nervous breakdown several times. I am working directly in my Dropbox folder, and all my computers are &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/">
+  <link rel="canonical" href="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enuogh/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -80,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">What I Learned From Software Developers</h1>
+      <h1 class="entry-title">Dropbox Is Not Enuogh</h1>
     
     
       <p class="meta">
@@ -96,7 +96,7 @@
   
 
 
-<time datetime="2012-09-07T17:19:00+02:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+<time datetime="2012-09-10T15:58:00+02:00" pubdate data-updated="true">Sep 10<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -105,22 +105,21 @@
   </header>
 
 
-<div class="entry-content"><p>Software developers are like us on many levels. They build abstract models to solve concrete problems. They write lots of code. They work in teams. They love to show off their work to the community.</p>
+<div class="entry-content"><p>I love Dropbox. It has saved me from a nervous breakdown several times. I am working directly in my Dropbox folder, and all my computers are automatically in sync. I have not seen a pendrive in ages. I also have <a href="https://www.dropbox.com/help/113/en">Packrat</a> enabled, which came handy several times in recovering a long-lost file. All my coauthors are on Dropbox, and it is our default tool for sharing files. So, if you still do not have a Dropbox account, by all means, sign up now.</p>
 
-<p>But first, and foremost, they love to learn new stuff to become better at what they do. The sheer number of <a href="http://en.wikipedia.org/wiki/List_of_programming_languages_by_category">programming languages</a> out there is amazing. So, the real defining fearure of nerds is not that they don&#8217;t have a life. It&#8217;s that they have an insatiable hunger for knowledge and up-to-date skills. Sounds like the way academics like to describe themselves. Nerds are us.</p>
+<p><img class="left" src="/images/posts/packrat.png"> There are two aspects, however, where Dropbox falls short. The first is version control. Sure, Packrat keeps all past versions, but good luck finding the right version of your file among 48 revisions. The second is data storage &#8211; somewhere in the jungles of Amazon S3. With large and sensitive datasets you might want to have more control over where you store your data. Let me write about the first of these today.</p>
 
-<p>I learned from software developers to never stop developing my craft. Mind you, there is a fine line between learning useful new tools and browsing the web to procrastinate. But if you are still using Word to write your papers, email to send your files, an HTML editor and FTP to update your website, an old EViews to run your regressions, or unwieldy Matlab codes to simulate your model, you should ask yourself whether it&#8217;s because these are the best tools for you (might be) or because you grew lazy to learn something new (more likely).</p>
+<p>If you are working with others and want to follow <em>who</em> changed <em>what</em>, you need proper version control. The two most popular version control tools I have experience with are <a href="http://subversion.tigris.org">Subversion</a> and <a href="http://git-scm.com/">Git</a>. Both are suitable for storing and sharing past versions of your files with helpful messages attached to them. Both are open source and come with a number of user-friendly clients.</p>
 
-<p>Software developers have taught me how to</p>
+<p><a href="http://www.brandonsavage.net/git-versus-subversion-a-reconsideration/">Some believed</a> that Git is more difficult to learn than Subversion. <em>After</em> you have used Subversion, Git may take some getting used to, because it uses a different concept. However, if you never used either of these, go with Git. It is much easier to adopt.</p>
 
-<ul>
-<li>collaborate more effectively (use version control),</li>
-<li>build useful abstractions (how to think about data),</li>
-<li>write better code (optimized for humans, not computers).</li>
-</ul>
+<p>You should think of Git as a tool to create archeological layers of the past versions of your files and folders. I say archeological layers, because all your past data stays <em>in place</em>, underneath your current version. (In practice, they are stored in a subfolder named <code>.git</code>.) There is no need to set up a server to host your past data. This makes it easier to get started (no funky setup) and faster to save newer and newer versions (no network traffic). The point of version control is to control versions, and Git makes it as easy as possible.</p>
 
+<p><img class="left" src="/images/posts/git-tower.png"> As an example, look at the history of the same file (courtesy of the beautiful Git client for Mac, <a href="http://www.git-tower.com/index.html">Tower</a>). I have attached comments to each version and I can quickly compare what actually changed. It takes some discipline, as I have to explicitly drag-and-drop the files whenever I want to save a new version and I also have to attach a comment. But this is still faster than emailing your coauthor to let them know what changed in the Dropbox folder.</p>
 
-<p>I will write about each of these in more detail.</p>
+<p>Of course, with Git (as well as Subversion) you can also share your folder with others. I say it as an afterthought because Dropbox already easily takes care of the sharing part. If you keep your <code>.git</code> folder inside your Dropbox folder, then not only the current version, but all past versions are also shared across computers. This is not the official way to do it, because Git and Dropbox may get tangled up, especially if you lose network connection and Dropbox cannot refresh for a long time. For me, it has worked fine. If you want to put your files on a server instead, <a href="https://github.com/">GitHub</a> is a popular choice.</p>
+
+<p>I hope that by now you are excited to try Git. Head over to its official (and free) <a href="http://git-scm.com/book">book</a> to learn how it actually works.</p>
 </div>
 
 
@@ -143,7 +142,7 @@
   
 
 
-<time datetime="2012-09-07T17:19:00+02:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+<time datetime="2012-09-10T15:58:00+02:00" pubdate data-updated="true">Sep 10<span>th</span>, 2012</time>
       
 
 
@@ -151,7 +150,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/" data-via="korenmiklos" data-counturl="http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enuogh/" data-via="korenmiklos" data-counturl="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enuogh/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -164,8 +163,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/09/07/what-i-learned-from-software-developers/" title="Previous Post: What I learned from software developers">&laquo; What I learned from software developers</a>
       
-        <a class="basic-alignment right" href="/blog/2012/09/10/dropbox-is-not-enuogh/" title="Next Post: Dropbox is not enuogh">Dropbox is not enuogh &raquo;</a>
       
     </p>
   </footer>
@@ -243,8 +242,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/';
-        var disqus_url = 'http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/';
+        var disqus_identifier = 'http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enuogh/';
+        var disqus_url = 'http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enuogh/';
         var disqus_script = 'embed.js';
       
     (function () {
