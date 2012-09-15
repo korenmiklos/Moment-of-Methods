@@ -9,7 +9,7 @@
   <meta name="author" content="Miklós Koren">
 
   
-  <meta name="description" content="I love Dropbox. It has saved me from a nervous breakdown several times. I am working directly in my Dropbox folder, and all my computers are &hellip;">
+  <meta name="description" content="I sometimes have to move large amounts of data. At least large by the standards of an economist turned hacker. For example, the shapefiles and data &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -77,6 +77,62 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/09/15/sparkleshare-for-moving-large-data/">SparkleShare for Moving Large Data</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-09-15T14:16:00+02:00" pubdate data-updated="true">Sep 15<span>th</span>, 2012</time>
+        
+         | <a href="/blog/2012/09/15/sparkleshare-for-moving-large-data/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I sometimes have to move large amounts of data. At least large by the standards of an economist turned hacker. For example, the shapefiles and data from the <a href="http://www.census.gov/econ/cbp/">County and ZIP-Code Business Patterns</a> that I use in my paper &#8220;Cattle, Steaks and Restaurants&#8221; take up 2 GB. In my <a href="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enough/">previous post</a>, I said that Dropbox is not suitable for storing, synchronizing and sharing data of this size, especially if you are on the wrong side of the Atlantic.</p>
+
+<p>Dropbox <a href="https://www.dropbox.com/help/7/en">stores all our files</a> on Amazon S3 servers in the U.S. Even though Amazon has servers in Ireland, you cannot tell Dropbox to use those. This is going to slow you down if you are in Europe. In addition, some of the data I use are proprietary and I simply cannot put them on a server outside my control.</p>
+
+<p><a href="http://sparkleshare.org/">SparkleShare</a> to the rescue. It is an open source file sharing client, which works much like Dropbox: whenever you add or change files in a special folder, they are uploaded to the server. The beauty of SparkleShare is that it uses Git in the background. All it needs is a Git repository to synchronize with. You can have it on your own server to minimize data travel time and to maximize security.</p>
+
+<p>To give you an idea about the speed gains, I have conducted a simple non-scientific test. To test upload speed, I have synched an 86.3MB binary file from my home computer to the Dropbox/SparkleShare server. My SparkleShare server is hosted by <a href="http://www.webfaction.com/">Webfaction</a> in Amsterdam. In a very scientific manner, I simply measured how long it took until the Dropbox/SparkleShare icon stopped spinning, indicating that file transfer has completed.</p>
+
+<p>To measure download, I got a different, 59.4 MB binary file to the Dropbox/SparkleShare servers. I used web upload for Dropbox and measured the time it took after the file appeared on the server to it becoming available on my computer.
+For SparkleShare, just added the file to the Git repository on the server and measured the time it took <code>git pull</code> to complete.</p>
+
+<p>I report the results as minutes per GB, so smaller numbers are better. I rescaled things to GB so that the numbers are more representative of working with large data.</p>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/static/modules/gviz/1.0/chart.js"> {"dataSourceUrl":"//docs.google.com/spreadsheet/tq?key=0AhJS2rfBAT8JdGhOWWRDaFhlVGI0XzNhZ1E3NmJIVFE&transpose=1&headers=1&range=C12%3AE14&gid=0&pub=1","options":{"titleTextStyle":{"bold":true,"color":"#000","fontSize":16},"vAxes":[{"useFormatFromData":true,"minValue":null,"viewWindowMode":null,"viewWindow":null,"maxValue":null},{"useFormatFromData":true}],"series":{"0":{"color":"#6fa8dc"},"1":{"color":"#e69138"}},"title":"","booleanRole":"certainty","animation":{"duration":0},"domainAxis":{"direction":1},"legend":"top","hAxis":{"useFormatFromData":true,"minValue":null,"viewWindowMode":"pretty","logScale":false,"viewWindow":{"min":null,"max":null},"maxValue":null},"isStacked":false,"width":600,"height":371},"state":{},"view":{},"chartType":"BarChart","chartName":"Chart 1"} </script>
+
+
+<p>It takes 39 minutes to upload a GB to Dropbox over my cable connection from home. Excruciatingly slow. SparkleShare is about twice as fast. The real difference, however, is between download speeds. While Dropbox took 27 minutes per GB, SparkleShare took less than 2. An order of magnitude faster!</p>
+
+<p>This is why I use SparkleShare (or, with nerdy coauthors, simply Git) to share large datafiles. What solutions do you use for this problem? What is your experience with Dropbox and SparkleShare?</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -198,6 +254,10 @@
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/09/15/sparkleshare-for-moving-large-data/">SparkleShare for moving large data</a>
+      </li>
     
       <li class="post">
         <a href="/blog/2012/09/10/dropbox-is-not-enough/">Dropbox is not enough</a>
