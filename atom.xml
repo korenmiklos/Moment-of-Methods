@@ -4,7 +4,7 @@
   <title><![CDATA[Moment of Methods]]></title>
   <link href="http://momentofmethods.com/atom.xml" rel="self"/>
   <link href="http://momentofmethods.com/"/>
-  <updated>2012-09-17T20:29:32+02:00</updated>
+  <updated>2012-09-19T21:29:58+02:00</updated>
   <id>http://momentofmethods.com/</id>
   <author>
     <name><![CDATA[Miklós Koren]]></name>
@@ -12,6 +12,48 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Cultivate your tree]]></title>
+    <link href="http://momentofmethods.com/blog/2012/09/19/cultivate-your-tree/"/>
+    <updated>2012-09-19T17:27:00+02:00</updated>
+    <id>http://momentofmethods.com/blog/2012/09/19/cultivate-your-tree</id>
+    <content type="html"><![CDATA[<p>The thing I probably hated the most as a Windows user was folder names like <code>C:\Documents and Settings\koren\My Documents\My Dropbox</code>. This was a pain to use even with the small scripts that economists write (such as <a href="http://stata.com/">Stata</a> <code>do</code> files). I understand Microsoft wants me to point and click, but why make it harder to spell my folder names? Compare it to <code>/home/koren/Dropbox</code>.</p>
+
+<p>This is not a minor nuisance, since by effectively prohibiting me to type my folder names, Microsoft made me sloppier in maintaining a nice tree structure. It took me a while to realize that the <a href="http://en.wikipedia.org/wiki/Unix">tried and tested</a> tree structure is, at least currently, the most efficient way of storing and retrieving my documents and other files.</p>
+
+<p><img src="http://farm1.staticflickr.com/109/294927196_d501c5cf97.jpg"></p>
+
+<p>In Unix-like systems, every file is part of a single tree, starting at <code>/</code>. Trees are great because you can traverse them easily. I almost never have to search for a file. I am quite certain about where to find <code>~/Dropbox/projects/machines/text/slides90.tex</code> or <code>~/Dropbox/courses/trade/lectures/figures/food_trade.pdf</code>. In fact, if you maintain a deep-enough tree structure, you will find each file with at most <code>O(log N)</code> clicks, where <code>N</code> is the number of files.</p>
+
+<p>Also, subtrees let you hold related stuff together. Of course, it is up to you to decide what is related. To me, <code>machines/code</code> and <code>machines/data</code> sound more related than <code>code/machines</code> and <code>code/spillovers</code>. So a typical project folder looks like::</p>
+
+<pre><code>machines
+    code
+    data
+        customs
+        wages
+    text
+        figures
+        tables
+    literature
+</code></pre>
+
+<p>This way it is easy to share a project folder with a coauthor, as codes, text and data all reside there. As I will discuss later this week, one concern is that if you would like to reuse code or data in another project, it makes no sense to keep  replicas in different places.</p>
+
+<p>A few suggestions to grow a healthier tree:</p>
+
+<ol>
+<li>Use forward slashes (<code>/</code>) in paths, even on Windows. Windows will not complain, and your Linux/Mac coauthors will thank you.</li>
+<li>Use relative paths. For example, from scripts residing in <code>projects/machines/code</code> I can reach data residing in <code>projects/machines/data</code> by simply referring to <code>../data</code>. This way I don&#8217;t need to know where my coauthor has placed her project folder.</li>
+<li>Avoid spaces and accents. I&#8217;m all for expressive filenames, but you don&#8217;t want to risk compatibility across platforms. A friend of mine once created an <a href="http://en.wikipedia.org/wiki/ArchiCAD">ArchiCAD</a> file called <code>szőlőfeldolgozó üzem.pln</code> for a class project. His project got almost killed by different version of Windows at school. Underscore_is_perfectly_suitable to replace spaces, although these days dashes-are-more-trendy.</li>
+<li>Separate files by topics and function, not by date and author. I have a fairly good idea what <code>projects/machines/code</code> vs <code>projects/machines/data</code> hold, but try guessing what is inside <code>june2012version/adam</code>. Use <a href="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enough/">version control</a> for sharing and storing history.</li>
+</ol>
+
+
+<p>Where do you store your project files? How do you organize them?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[SparkleShare for moving large data]]></title>
