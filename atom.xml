@@ -4,7 +4,7 @@
   <title><![CDATA[Moment of Methods]]></title>
   <link href="http://momentofmethods.com/atom.xml" rel="self"/>
   <link href="http://momentofmethods.com/"/>
-  <updated>2012-09-19T21:31:40+02:00</updated>
+  <updated>2012-09-26T20:57:11+02:00</updated>
   <id>http://momentofmethods.com/</id>
   <author>
     <name><![CDATA[Miklós Koren]]></name>
@@ -12,6 +12,47 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Don't Repeat Yourself. Ever.]]></title>
+    <link href="http://momentofmethods.com/blog/2012/09/26/dont-repeat-yourself-ever/"/>
+    <updated>2012-09-26T15:32:00+02:00</updated>
+    <id>http://momentofmethods.com/blog/2012/09/26/dont-repeat-yourself-ever</id>
+    <content type="html"><![CDATA[<p>Like most economists, I started coding by accident, so I never had any training. The closest I came to a formal training was reading <a href="http://pragprog.com/book/tpp/the-pragmatic-programmer">The Pragmatic Programmer</a>. It is a book you should read cover to cover, <em>twice</em>. It doesn&#8217;t tell you much about how to write a loop in C, but it gives you a lot of useful tricks about how to become better at the things programmers do every day. The focus is on you as a human, not the computer.</p>
+
+<p>I guess I should have learned to be pragmatic about this, but there is one advice from the book that I treat as <em>dogma</em>.</p>
+
+<pre><code>Don't Repeat Yourself: Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.
+</code></pre>
+
+<p>The goal of the <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY principle</a> is not to save you some typing. In fact, sticking to DRY may sometimes make your code longer rather than shorter. The goal is to minimize the risk of human error. If I store the same information in two different places, they will surely fall out of sync sometime soon. At some point I will update one but not the other. Then I will <em>believe</em> I have the same information in the two places when in fact I have something else.</p>
+
+<p>To give you an example, I use the <em>Hungarian Customs Statistics</em> dataset in several of my <a href="http://miklos.koren.hu/view/kmwprs/">papers</a>. I keep learning more about the data and do various cleaning steps as I go along. If I did this separately for each paper, there would be no single, unambiguous meaning of <em>the</em> Customs Statistics. Given that it takes years to complete a paper from idea to publication, I would almost certainly mix up the different version.</p>
+
+<p>Instead, I store oft-used datasets separately from projects in a datastore. All the data-cleaning codes reside with the data in this datastore, e.g., at <code>datastore/customs/data</code> and <code>datastore/customs/code</code>. (See my <a href="http://momentofmethods.com/blog/2012/09/19/cultivate-your-tree/">previous post</a> on folder structure.) Each of my projects, and each of my coauthors on these projects can then refer to the datastore.</p>
+
+<p>At the very least, DRY tells you to use constants to parametrize your program. Suppose my Stata code keeps loading files from the folder <code>/media/home/share/datastore/customs</code>. It would make sense to define the constant <code>customs_folder</code> and refer to that later on. This simple trick could have saved me hours of debugging. (Aside: Stata is really lousy about variables. There are no string variables, only <a href="http://www.stata.com/help.cgi?macro">macros</a>. So to set the &#8220;constant,&#8221; you need to define a local macro as <code>local customs_folder /media/home/share/datastore/customs</code>. If you haven&#8217;t done it yet, go ahead and read up on Stata macros.)</p>
+
+<p>As a more knife-edge example, compare the following Stata code</p>
+
+<pre><code>areg lnwage treatment age, a(firmid) cluster(firmid)
+areg lnwage treatment schooling, a(firmid) cluster(firmid)
+</code></pre>
+
+<p>to</p>
+
+<pre><code>foreach control of var age schooling {
+    areg lnwage treatment `control', a(firmid) cluster(firmid)
+}
+</code></pre>
+
+<p>They do the same: regress wages on a treatment variable using as control either age or schooling. But what if a referee suggests I should cluster my standard errors by city rather than firm? In the second case, I only have to rewrite <code>cluster(firmid)</code> to <code>cluster(cityid)</code> once and I can be sure that all my speficications use the same clustering.</p>
+
+<p>This is probably taking DRY to the extreme. The second code is not shorter or easier to read than the first. Still, you should treat DRY as dogma. You will be tempted. Your fingers will be itching to press <code>Ctrl-C</code>, <code>Ctrl-V</code>. Don&#8217;t go there. If it is the same information, it should only be said once. Your future self six months down the road will be thankful.</p>
+
+<p>How far are you taking DRY? Do you have useful tricks to minimize errors from repetition?</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Cultivate your tree]]></title>
