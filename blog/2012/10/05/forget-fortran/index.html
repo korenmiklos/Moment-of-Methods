@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Dropbox is not enough - Moment of Methods</title>
+  <title>Forget Fortran - Moment of Methods</title>
   <meta name="author" content="Miklós Koren">
 
   
-  <meta name="description" content="I love Dropbox. It has saved me from a nervous breakdown several times. I am working directly in my Dropbox folder, and all my computers are &hellip;">
+  <meta name="description" content="Climbers strive for speed in the mountains not because they want to minimize the time spent in danger zones. How do we make our programs run faster? &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enough/">
+  <link rel="canonical" href="http://momentofmethods.com/blog/2012/10/05/forget-fortran/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -80,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">Dropbox Is Not Enough</h1>
+      <h1 class="entry-title">Forget Fortran</h1>
     
     
       <p class="meta">
@@ -96,7 +96,7 @@
   
 
 
-<time datetime="2012-09-10T15:58:00+02:00" pubdate data-updated="true">Sep 10<span>th</span>, 2012</time>
+<time datetime="2012-10-05T15:14:00+02:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -105,28 +105,41 @@
   </header>
 
 
-<div class="entry-content"><p>I love Dropbox. It has saved me from a nervous breakdown several times. I am working directly in my Dropbox folder, and all my computers are automatically in sync. I have not seen a pendrive in ages. I also have <a href="https://www.dropbox.com/help/113/en">Packrat</a> enabled, which came handy several times in recovering a long-lost file. All my coauthors are on Dropbox, and it is our default tool for sharing files. So, if you still do not have a Dropbox account, by all means, sign up now.</p>
-
-<p>There are two aspects, however, where Dropbox falls short. The first is version control. Sure, Packrat keeps all past versions, but good luck finding the right version of your file among 48 revisions. The second is data storage &#8211; somewhere in the jungles of Amazon S3. With large and sensitive datasets you might want to have more control over where you store your data. Let me write about the first of these today.</p>
+<div class="entry-content"><p>Climbers strive for speed in the mountains not because they want to minimize the time spent in danger zones. How do we make our programs run faster? What are the danger zones of programming?</p>
 
 <!-- more -->
 
 
-<p><img src="/images/posts/packrat.png"></p>
+<p>I want to write fast programs so that I can iterate more often. I do something, let it run, make some changes, let it run again, and so on. This is impossible if your program takes two weeks to complete.</p>
 
-<p>If you are working with others and want to follow <em>who</em> changed <em>what</em>, you need proper version control. The two most popular version control tools I have experience with are <a href="http://subversion.tigris.org">Subversion</a> and <a href="http://git-scm.com/">Git</a>. Both are suitable for storing and sharing past versions of your files with helpful messages attached to them. Both are open source and come with a number of user-friendly clients.</p>
+<p>Your first instinct might be to go out to learn a fast programming language like C or Fortran. For that matter, pretty much anything is faster than Matlab or NumPy. If you are already comfortable with one of these low-level languages, good for you. But I think fast iteration is better served by a more human friendly, more high-level language. If my code takes several hours to debug each time, I have not gained much from its faster execution.</p>
 
-<p><a href="http://www.brandonsavage.net/git-versus-subversion-a-reconsideration/">Some believed</a> that Git is more difficult to learn than Subversion. <em>After</em> you have used Subversion, Git may take some getting used to, because it uses a different concept. However, if you never used either of these, go with Git. It is much easier to adopt.</p>
+<p>An alternative approach is to fine-tune your existing code to squeeze out the maximum speed. Take, for example, <a href="http://statsmodels.sourceforge.net/">Statsmodels</a>, a Python library for estimating statistical models. Because most time is spent moving data to and from memory, the author, X, has rewritten even the basic functions to minimize these data movements.</p>
 
-<p>You should think of Git as a tool to create archeological layers of the past versions of your files and folders. I say archeological layers, because all your past data stays <em>in place</em>, underneath your current version. (In practice, they are stored in a subfolder named <code>.git</code>.) There is no need to set up a server to host your past data. This makes it easier to get started (no funky setup) and faster to save newer and newer versions (no network traffic). The point of version control is to control versions, and Git makes it as easy as possible.</p>
+<p>To estimate bicubic kernel functions, for example, one needs to raise all elements of a vector to the the cube. Here is how Statsmodel <a href="https://github.com/statsmodels/statsmodels/blob/master/statsmodels/nonparametric/smoothers_lowess.py">does it</a>:</p>
 
-<p><img src="/images/posts/git-tower.png"></p>
+<pre><code>def _lowess_mycube(t):
+    """
+    Fast matrix cube
 
-<p>As an example, look at the history of the same file (courtesy of the beautiful Git client for Mac, <a href="http://www.git-tower.com/index.html">Tower</a>). I have attached comments to each version and I can quickly compare what actually changed. It takes some discipline, as I have to explicitly drag-and-drop the files whenever I want to save a new version and I also have to attach a comment. But this is still faster than emailing your coauthor to let them know what changed in the Dropbox folder.</p>
+    Parameters
+    ----------
+    t : ndarray
+        Array that is cubed, elementwise and in-place
 
-<p>Of course, with Git (as well as Subversion) you can also share your folder with others. I say it as an afterthought because Dropbox already easily takes care of the sharing part. If you keep your <code>.git</code> folder inside your Dropbox folder, then not only the current version, but all past versions are also shared across computers. This is not the official way to do it, because Git and Dropbox may get tangled up, especially if you lose network connection and Dropbox cannot refresh for a long time. For me, it has worked fine. If you want to put your files on a server instead, <a href="https://github.com/">GitHub</a> is a popular choice.</p>
+    Returns
+    -------
+    Nothing
 
-<p>I hope that by now you are excited to try Git. Head over to its official (and free) <a href="http://git-scm.com/book">book</a> to learn how it actually works.</p>
+    """
+    #t **= 3
+    t2 = t*t
+    t *= t2
+</code></pre>
+
+<p>You do two multiplications in place and one copying of the vector. Clever. But is this really necessary? Should I write a separate cube function each time it is needed? That would be <a href="http://momentofmethods.com/blog/2012/09/26/dont-repeat-yourself-ever/">so wrong</a>. Such a program is prone for errors, which is what I wanted to avoid in the first place.</p>
+
+<p>What then? Personally, I prefer my program clean rather than fast. An approach that I am experimenting with is parallel or distributed programming. This maintains the clean nature of the code as each thread only needs to deal with its own task. It also helps that distributed execution pretty much scales linearly. I can run my code on 640 cores over at <a href="http://picloud.com">PiCloud</a> with no more effort than doing it on my quad-core computer. <a href="https://github.com/korenmiklos/Technological-Diversification-AER/tree/master/quantitative_assessment">This is what I did for a recent paper</a>.</p>
 </div>
 
 
@@ -149,7 +162,7 @@
   
 
 
-<time datetime="2012-09-10T15:58:00+02:00" pubdate data-updated="true">Sep 10<span>th</span>, 2012</time>
+<time datetime="2012-10-05T15:14:00+02:00" pubdate data-updated="true">Oct 5<span>th</span>, 2012</time>
       
 
 
@@ -157,7 +170,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enough/" data-via="korenmiklos" data-counturl="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enough/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://momentofmethods.com/blog/2012/10/05/forget-fortran/" data-via="korenmiklos" data-counturl="http://momentofmethods.com/blog/2012/10/05/forget-fortran/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -170,10 +183,8 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2012/09/07/what-i-learned-from-software-developers/" title="Previous Post: What I learned from software developers">&laquo; What I learned from software developers</a>
+        <a class="basic-alignment left" href="/blog/2012/09/26/dont-repeat-yourself-ever/" title="Previous Post: Don't Repeat Yourself. Ever.">&laquo; Don't Repeat Yourself. Ever.</a>
       
-      
-        <a class="basic-alignment right" href="/blog/2012/09/15/sparkleshare-for-moving-large-data/" title="Next Post: SparkleShare for moving large data">SparkleShare for moving large data &raquo;</a>
       
     </p>
   </footer>
@@ -263,8 +274,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enough/';
-        var disqus_url = 'http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enough/';
+        var disqus_identifier = 'http://momentofmethods.com/blog/2012/10/05/forget-fortran/';
+        var disqus_url = 'http://momentofmethods.com/blog/2012/10/05/forget-fortran/';
         var disqus_script = 'embed.js';
       
     (function () {

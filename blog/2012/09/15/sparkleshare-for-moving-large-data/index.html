@@ -107,6 +107,9 @@
 
 <div class="entry-content"><p>I sometimes have to move large amounts of data. At least large by the standards of an economist turned hacker. For example, the shapefiles and data from the <a href="http://www.census.gov/econ/cbp/">County and ZIP-Code Business Patterns</a> that I use in my paper &#8220;Cattle, Steaks and Restaurants&#8221; take up 2 GB. In my <a href="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enough/">previous post</a>, I said that Dropbox is not suitable for storing, synchronizing and sharing data of this size, especially if you are on the wrong side of the Atlantic.</p>
 
+<!-- more -->
+
+
 <p>Dropbox <a href="https://www.dropbox.com/help/7/en">stores all our files</a> on Amazon S3 servers in the U.S. Even though Amazon has servers in Ireland, you cannot tell Dropbox to use those. This is going to slow you down if you are in Europe. In addition, some of the data I use are proprietary and I simply cannot put them on a server outside my control.</p>
 
 <p><a href="http://sparkleshare.org/">SparkleShare</a> to the rescue. It is an open source file sharing client, which works much like Dropbox: whenever you add or change files in a special folder, they are uploaded to the server. The beauty of SparkleShare is that it uses Git in the background. All it needs is a Git repository to synchronize with. You can have it on your own server to minimize data travel time and to maximize security.</p>
@@ -191,6 +194,10 @@ For SparkleShare, just added the file to the Git repository on the server and me
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2012/10/05/forget-fortran/">Forget Fortran</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2012/09/26/dont-repeat-yourself-ever/">Don't Repeat Yourself. Ever.</a>
       </li>
     
@@ -204,10 +211,6 @@ For SparkleShare, just added the file to the Git repository on the server and me
     
       <li class="post">
         <a href="/blog/2012/09/10/dropbox-is-not-enough/">Dropbox is not enough</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2012/09/07/what-i-learned-from-software-developers/">What I learned from software developers</a>
       </li>
     
   </ul>

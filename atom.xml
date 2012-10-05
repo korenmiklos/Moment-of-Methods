@@ -4,7 +4,7 @@
   <title><![CDATA[Moment of Methods]]></title>
   <link href="http://momentofmethods.com/atom.xml" rel="self"/>
   <link href="http://momentofmethods.com/"/>
-  <updated>2012-09-26T20:58:07+02:00</updated>
+  <updated>2012-10-05T17:28:06+02:00</updated>
   <id>http://momentofmethods.com/</id>
   <author>
     <name><![CDATA[Miklós Koren]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Forget Fortran]]></title>
+    <link href="http://momentofmethods.com/blog/2012/10/05/forget-fortran/"/>
+    <updated>2012-10-05T15:14:00+02:00</updated>
+    <id>http://momentofmethods.com/blog/2012/10/05/forget-fortran</id>
+    <content type="html"><![CDATA[<p>Climbers strive for speed in the mountains not because they want to minimize the time spent in danger zones. How do we make our programs run faster? What are the danger zones of programming?</p>
+
+<!-- more -->
+
+
+<p>I want to write fast programs so that I can iterate more often. I do something, let it run, make some changes, let it run again, and so on. This is impossible if your program takes two weeks to complete.</p>
+
+<p>Your first instinct might be to go out to learn a fast programming language like C or Fortran. For that matter, pretty much anything is faster than Matlab or NumPy. If you are already comfortable with one of these low-level languages, good for you. But I think fast iteration is better served by a more human friendly, more high-level language. If my code takes several hours to debug each time, I have not gained much from its faster execution.</p>
+
+<p>An alternative approach is to fine-tune your existing code to squeeze out the maximum speed. Take, for example, <a href="http://statsmodels.sourceforge.net/">Statsmodels</a>, a Python library for estimating statistical models. Because most time is spent moving data to and from memory, the author, X, has rewritten even the basic functions to minimize these data movements.</p>
+
+<p>To estimate bicubic kernel functions, for example, one needs to raise all elements of a vector to the the cube. Here is how Statsmodel <a href="https://github.com/statsmodels/statsmodels/blob/master/statsmodels/nonparametric/smoothers_lowess.py">does it</a>:</p>
+
+<pre><code>def _lowess_mycube(t):
+    """
+    Fast matrix cube
+
+    Parameters
+    ----------
+    t : ndarray
+        Array that is cubed, elementwise and in-place
+
+    Returns
+    -------
+    Nothing
+
+    """
+    #t **= 3
+    t2 = t*t
+    t *= t2
+</code></pre>
+
+<p>You do two multiplications in place and one copying of the vector. Clever. But is this really necessary? Should I write a separate cube function each time it is needed? That would be <a href="http://momentofmethods.com/blog/2012/09/26/dont-repeat-yourself-ever/">so wrong</a>. Such a program is prone for errors, which is what I wanted to avoid in the first place.</p>
+
+<p>What then? Personally, I prefer my program clean rather than fast. An approach that I am experimenting with is parallel or distributed programming. This maintains the clean nature of the code as each thread only needs to deal with its own task. It also helps that distributed execution pretty much scales linearly. I can run my code on 640 cores over at <a href="http://picloud.com">PiCloud</a> with no more effort than doing it on my quad-core computer. <a href="https://github.com/korenmiklos/Technological-Diversification-AER/tree/master/quantitative_assessment">This is what I did for a recent paper</a>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Don't Repeat Yourself. Ever.]]></title>
@@ -23,6 +66,9 @@
 <p>I guess I should have learned to be pragmatic about this, but there is one advice from the book that I treat as <em>dogma</em>.</p>
 
 <blockquote><p>Don&#8217;t Repeat Yourself: Every piece of knowledge must have a single, unambiguous, authoritative representation within a system.</p></blockquote>
+
+<!-- more -->
+
 
 <p>The goal of the <a href="http://en.wikipedia.org/wiki/Don't_repeat_yourself">DRY principle</a> is not to save you some typing. In fact, sticking to DRY may sometimes make your code longer rather than shorter. The goal is to minimize the risk of human error. If I store the same information in two different places, they will surely fall out of sync sometime soon. At some point I will update one but not the other. Then I will <em>believe</em> I have the same information in the two places when in fact I have something else.</p>
 
@@ -61,6 +107,9 @@ areg lnwage treatment schooling, a(firmid) cluster(firmid)
     <content type="html"><![CDATA[<p>The thing I probably hated the most as a Windows user was folder names like <code>C:\Documents and Settings\koren\My Documents\My Dropbox</code>. This was a pain to use even with the small scripts that economists write (such as <a href="http://stata.com/">Stata</a> <code>do</code> files). I understand Microsoft wants me to point and click, but why make it harder to spell my folder names? Compare it to <code>/home/koren/Dropbox</code>.</p>
 
 <p>This is not a minor nuisance, since by effectively prohibiting me to type my folder names, Microsoft made me sloppier in maintaining a nice tree structure. It took me a while to realize that the <a href="http://en.wikipedia.org/wiki/Unix">tried and tested</a> tree structure is, at least currently, the most efficient way of storing and retrieving my documents and other files.</p>
+
+<!-- more -->
+
 
 <p><img class="center" src="http://farm1.staticflickr.com/109/294927196_d501c5cf97.jpg"></p>
 
@@ -102,6 +151,9 @@ areg lnwage treatment schooling, a(firmid) cluster(firmid)
     <id>http://momentofmethods.com/blog/2012/09/15/sparkleshare-for-moving-large-data</id>
     <content type="html"><![CDATA[<p>I sometimes have to move large amounts of data. At least large by the standards of an economist turned hacker. For example, the shapefiles and data from the <a href="http://www.census.gov/econ/cbp/">County and ZIP-Code Business Patterns</a> that I use in my paper &#8220;Cattle, Steaks and Restaurants&#8221; take up 2 GB. In my <a href="http://momentofmethods.com/blog/2012/09/10/dropbox-is-not-enough/">previous post</a>, I said that Dropbox is not suitable for storing, synchronizing and sharing data of this size, especially if you are on the wrong side of the Atlantic.</p>
 
+<!-- more -->
+
+
 <p>Dropbox <a href="https://www.dropbox.com/help/7/en">stores all our files</a> on Amazon S3 servers in the U.S. Even though Amazon has servers in Ireland, you cannot tell Dropbox to use those. This is going to slow you down if you are in Europe. In addition, some of the data I use are proprietary and I simply cannot put them on a server outside my control.</p>
 
 <p><a href="http://sparkleshare.org/">SparkleShare</a> to the rescue. It is an open source file sharing client, which works much like Dropbox: whenever you add or change files in a special folder, they are uploaded to the server. The beauty of SparkleShare is that it uses Git in the background. All it needs is a Git repository to synchronize with. You can have it on your own server to minimize data travel time and to maximize security.</p>
@@ -131,6 +183,9 @@ For SparkleShare, just added the file to the Git repository on the server and me
 
 <p>There are two aspects, however, where Dropbox falls short. The first is version control. Sure, Packrat keeps all past versions, but good luck finding the right version of your file among 48 revisions. The second is data storage &#8211; somewhere in the jungles of Amazon S3. With large and sensitive datasets you might want to have more control over where you store your data. Let me write about the first of these today.</p>
 
+<!-- more -->
+
+
 <p><img src="http://momentofmethods.com/images/posts/packrat.png"></p>
 
 <p>If you are working with others and want to follow <em>who</em> changed <em>what</em>, you need proper version control. The two most popular version control tools I have experience with are <a href="http://subversion.tigris.org">Subversion</a> and <a href="http://git-scm.com/">Git</a>. Both are suitable for storing and sharing past versions of your files with helpful messages attached to them. Both are open source and come with a number of user-friendly clients.</p>
@@ -155,6 +210,9 @@ For SparkleShare, just added the file to the Git repository on the server and me
     <updated>2012-09-07T17:19:00+02:00</updated>
     <id>http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers</id>
     <content type="html"><![CDATA[<p>Software developers are like us on many levels. They build abstract models to solve concrete problems. They write lots of code. They work in teams. They love to show off their work to the community.</p>
+
+<!-- more -->
+
 
 <p>But first, and foremost, they love to learn new stuff to become better at what they do. The sheer number of <a href="http://en.wikipedia.org/wiki/List_of_programming_languages_by_category">programming languages</a> out there is amazing. So, the real defining fearure of nerds is not that they don&#8217;t have a life. It&#8217;s that they have an insatiable hunger for knowledge and up-to-date skills. Sounds like the way academics like to describe themselves. Nerds are us.</p>
 
