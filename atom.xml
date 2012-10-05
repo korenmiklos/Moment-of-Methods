@@ -4,7 +4,7 @@
   <title><![CDATA[Moment of Methods]]></title>
   <link href="http://momentofmethods.com/atom.xml" rel="self"/>
   <link href="http://momentofmethods.com/"/>
-  <updated>2012-10-05T17:28:06+02:00</updated>
+  <updated>2012-10-05T17:32:06+02:00</updated>
   <id>http://momentofmethods.com/</id>
   <author>
     <name><![CDATA[Miklós Koren]]></name>
@@ -27,7 +27,7 @@
 
 <p>Your first instinct might be to go out to learn a fast programming language like C or Fortran. For that matter, pretty much anything is faster than Matlab or NumPy. If you are already comfortable with one of these low-level languages, good for you. But I think fast iteration is better served by a more human friendly, more high-level language. If my code takes several hours to debug each time, I have not gained much from its faster execution.</p>
 
-<p>An alternative approach is to fine-tune your existing code to squeeze out the maximum speed. Take, for example, <a href="http://statsmodels.sourceforge.net/">Statsmodels</a>, a Python library for estimating statistical models. Because most time is spent moving data to and from memory, the author, X, has rewritten even the basic functions to minimize these data movements.</p>
+<p>An alternative approach is to fine-tune your existing code to squeeze out the maximum speed. Take, for example, <a href="http://statsmodels.sourceforge.net/">Statsmodels</a>, a Python library for estimating statistical models. Because most time is spent moving data to and from memory, the author has rewritten even the basic functions to minimize these data movements.</p>
 
 <p>To estimate bicubic kernel functions, for example, one needs to raise all elements of a vector to the the cube. Here is how Statsmodel <a href="https://github.com/statsmodels/statsmodels/blob/master/statsmodels/nonparametric/smoothers_lowess.py">does it</a>:</p>
 
