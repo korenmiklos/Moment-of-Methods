@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>What I learned from software developers - Moment of Methods</title>
+  <title>I like my coffee black, my whisky neat, and my text plain - Moment of Methods</title>
   <meta name="author" content="Miklós Koren">
 
   
-  <meta name="description" content="Software developers are like us on many levels. They build abstract models to solve concrete problems. They write lots of code. They work in teams. &hellip;">
+  <meta name="description" content="I am writing this post in Sublime Text, my current favorite plain text editor. I have nothing but white letters against a dark grey background, and &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/">
+  <link rel="canonical" href="http://momentofmethods.com/blog/2013/02/11/i-like-my-coffee-black/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -80,7 +80,7 @@
   
   <header>
     
-      <h1 class="entry-title">What I Learned From Software Developers</h1>
+      <h1 class="entry-title">I Like My Coffee Black, My Whisky Neat, and My Text Plain</h1>
     
     
       <p class="meta">
@@ -96,7 +96,7 @@
   
 
 
-<time datetime="2012-09-07T17:19:00+02:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+<time datetime="2013-02-11T13:35:00+01:00" pubdate data-updated="true">Feb 11<span>th</span>, 2013</time>
         
          | <a href="#disqus_thread">Comments</a>
         
@@ -105,25 +105,51 @@
   </header>
 
 
-<div class="entry-content"><p>Software developers are like us on many levels. They build abstract models to solve concrete problems. They write lots of code. They work in teams. They love to show off their work to the community.</p>
+<div class="entry-content"><p>I am writing this post in <a href="http://www.sublimetext.com/2">Sublime Text</a>, my current favorite plain text editor. I have nothing but white letters against a dark grey background, and that&#8217;s the way I like it.</p>
+
+<p>Most documents and data we produce could be read out loud to another human, even if it took a long time. This means they could also be stored as plain text. So why bring in extra layers of complications? Why send a one-page PDF in an email, saying &#8220;Please see attached invitation&#8221;? Why save simple writings in a proprietary data format pushed by Microsoft? Why store data in a not very efficient binary format pushed by Stata?</p>
 
 <!-- more -->
 
 
-<p>But first, and foremost, they love to learn new stuff to become better at what they do. The sheer number of <a href="http://en.wikipedia.org/wiki/List_of_programming_languages_by_category">programming languages</a> out there is amazing. So, the real defining fearure of nerds is not that they don&#8217;t have a life. It&#8217;s that they have an insatiable hunger for knowledge and up-to-date skills. Sounds like the way academics like to describe themselves. Nerds are us.</p>
+<p>Machines, you might say. Some of these documents will be read by machines rather than humans. Surely, if your data has some machine-readable structure, you want to preserve it. You would like the computer to render the invitation just as beautifully on the reader&#8217;s screen as it did on yours. You would like your bullet items to be editable as such by your coauthors. And you would like them to load the same variables in the same order as you have in your Stata dataset.</p>
 
-<p>I learned from software developers to never stop developing my craft. Mind you, there is a fine line between learning useful new tools and browsing the web to procrastinate. But if you are still using Word to write your papers, email to send your files, an HTML editor and FTP to update your website, an old EViews to run your regressions, or unwieldy Matlab codes to simulate your model, you should ask yourself whether it&#8217;s because these are the best tools for you (might be) or because you grew lazy to learn something new (more likely).</p>
+<p>There are plenty of ways to represent structure in plain text. This way, both humans and machines will be able to read your document. See, for example, data containing a few months of the S&amp;P 500 index represented in comma separated values versus Stata&#8217;s proprietary <code>.dta</code> format. They hold the exact same information. Yet, the first is readable on more machines (including those that don&#8217;t have Stata) and by more humans.</p>
 
-<p>Software developers have taught me how to</p>
+<p><img src="/images/posts/csv.png"></p>
+
+<p><img src="/images/posts/dta.png"></p>
+
+<p>More complicated data structures can also be represented in plain text. <a href="http://en.wikipedia.org/wiki/JSON">JSON</a> has become the de facto standard for web applications to transmit their data. (Forget XML. Since when is it considered human readable?)</p>
+
+<p><img src="/images/posts/xml.png"></p>
+
+<p>My personal is favorite is <a href="http://en.wikipedia.org/wiki/Yaml">YAML</a>. It is the same concept as JSON, but more reader friendly. The first two datapoints of <code>sp500.csv</code> in JSON:</p>
+
+<pre><code>[{"date": "Jan 2000", "price": "1394.46"}, {"date": "Feb 2000", "price": "1366.42"}]
+</code></pre>
+
+<p>The same in YAML:</p>
+
+<pre><code>- date: Jan 2000
+  price: "1394.46"
+- date: Feb 2000
+  price: "1366.42"
+</code></pre>
+
+<p>If you decide to do most of your work in plain text, you will need a good editor. One that can, at the very least:</p>
 
 <ul>
-<li>collaborate more effectively (use version control),</li>
-<li>build useful abstractions (how to think about data),</li>
-<li>write better code (optimized for humans, not computers).</li>
+<li>automatically wrap long lines (I am amazed that some editors don&#8217;t do this)</li>
+<li>highlight the syntax of the programming or markup languages (such as JSON and YAML above) that you use the most</li>
+<li>indent nicely without your having to press <code>TAB</code> all the time</li>
+<li>support different character encodings, including the most widely used Unicode encoding, UTF-8.</li>
 </ul>
 
 
-<p>I will write about each of these in more detail.</p>
+<p>I am happy with Sublime Text. I also like <a href="http://www.iawriter.com/">iA Writer</a> for Mac and iOs. On Windows, I experimented with <a href="http://notepad-plus-plus.org/">Notepad++</a>. (The original Windows Notepad is so deficient that it does not satisfy <em>any</em> of the four requirements above.)</p>
+
+<p>What editor do you use? What limitations do you think plain text has over binary file formats?</p>
 </div>
 
 
@@ -146,7 +172,7 @@
   
 
 
-<time datetime="2012-09-07T17:19:00+02:00" pubdate data-updated="true">Sep 7<span>th</span>, 2012</time>
+<time datetime="2013-02-11T13:35:00+01:00" pubdate data-updated="true">Feb 11<span>th</span>, 2013</time>
       
 
 
@@ -154,7 +180,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/" data-via="korenmiklos" data-counturl="http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://momentofmethods.com/blog/2013/02/11/i-like-my-coffee-black/" data-via="korenmiklos" data-counturl="http://momentofmethods.com/blog/2013/02/11/i-like-my-coffee-black/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -167,8 +193,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left" href="/blog/2012/10/05/forget-fortran/" title="Previous Post: Forget Fortran">&laquo; Forget Fortran</a>
       
-        <a class="basic-alignment right" href="/blog/2012/09/10/dropbox-is-not-enough/" title="Next Post: Dropbox is not enough">Dropbox is not enough &raquo;</a>
       
     </p>
   </footer>
@@ -258,8 +284,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/';
-        var disqus_url = 'http://momentofmethods.com/blog/2012/09/07/what-i-learned-from-software-developers/';
+        var disqus_identifier = 'http://momentofmethods.com/blog/2013/02/11/i-like-my-coffee-black/';
+        var disqus_url = 'http://momentofmethods.com/blog/2013/02/11/i-like-my-coffee-black/';
         var disqus_script = 'embed.js';
       
     (function () {
