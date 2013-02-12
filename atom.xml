@@ -4,7 +4,7 @@
   <title><![CDATA[Moment of Methods]]></title>
   <link href="http://momentofmethods.com/atom.xml" rel="self"/>
   <link href="http://momentofmethods.com/"/>
-  <updated>2013-02-11T21:19:34+01:00</updated>
+  <updated>2013-02-12T21:40:10+01:00</updated>
   <id>http://momentofmethods.com/</id>
   <author>
     <name><![CDATA[Miklós Koren]]></name>
@@ -71,7 +71,7 @@
     <link href="http://momentofmethods.com/blog/2012/10/05/forget-fortran/"/>
     <updated>2012-10-05T15:14:00+02:00</updated>
     <id>http://momentofmethods.com/blog/2012/10/05/forget-fortran</id>
-    <content type="html"><![CDATA[<p>Climbers strive for speed in the mountains not because they want to minimize the time spent in danger zones. How do we make our programs run faster? What are the danger zones of programming?</p>
+    <content type="html"><![CDATA[<p>Climbers strive for speed in the mountains because they want to minimize the time spent in danger zones. How do we make our programs run faster? What are the danger zones of programming?</p>
 
 <!-- more -->
 
